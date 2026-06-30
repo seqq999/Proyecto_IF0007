@@ -155,6 +155,14 @@ public final class TableRepository {
         }
     }
 
+    public ExecutionResult executeUpdate(String sql) throws SQLException {
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            int affectedRows = statement.executeUpdate();
+            return new ExecutionResult(affectedRows);
+        }
+    }
+
     public static Object parseValue(ColumnDefinition column, String rawValue) {
         if (rawValue == null || rawValue.isBlank()) {
             if (column.nullable()) {

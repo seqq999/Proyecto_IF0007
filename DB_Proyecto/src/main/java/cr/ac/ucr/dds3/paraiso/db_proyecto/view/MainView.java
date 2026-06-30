@@ -17,6 +17,7 @@ public class MainView extends JFrame {
 
     private final TableCrudPanel tableCrudPanel = new TableCrudPanel();
     private final QueryPanel queryPanel = new QueryPanel();
+    private final SqlConsolePanel sqlConsolePanel = new SqlConsolePanel();
 
     public MainView() {
         super("Sistema de Gestión - bd_proyecto");
@@ -27,6 +28,7 @@ public class MainView extends JFrame {
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Administración de tablas", tableCrudPanel);
         tabs.addTab("Consultas avanzadas", queryPanel);
+        tabs.addTab("Consola SQL", sqlConsolePanel);
         add(tabs, BorderLayout.CENTER);
     }
 
@@ -38,6 +40,7 @@ public class MainView extends JFrame {
     public void bindController(MainController controller) {
         tableCrudPanel.bindController(controller);
         queryPanel.bindController(controller);
+        sqlConsolePanel.bindController(controller);
     }
 
     public void refreshCurrentTable() {

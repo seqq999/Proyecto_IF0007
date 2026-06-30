@@ -3,6 +3,7 @@ package cr.ac.ucr.dds3.paraiso.db_proyecto.controller;
 import cr.ac.ucr.dds3.paraiso.db_proyecto.model.config.DatabaseConfig;
 import cr.ac.ucr.dds3.paraiso.db_proyecto.model.data.Database;
 import cr.ac.ucr.dds3.paraiso.db_proyecto.model.data.ForeignKeyOption;
+import cr.ac.ucr.dds3.paraiso.db_proyecto.model.data.ExecutionResult;
 import cr.ac.ucr.dds3.paraiso.db_proyecto.model.data.QueryData;
 import cr.ac.ucr.dds3.paraiso.db_proyecto.model.data.QueryDefinition;
 import cr.ac.ucr.dds3.paraiso.db_proyecto.model.data.QueryResult;
@@ -101,6 +102,14 @@ public class MainController {
             view.showError(SqlErrorTranslator.translate(exception));
             return new QueryResult(List.of(), List.of());
         }
+    }
+
+    public QueryResult runFreeQuery(String sql) throws SQLException {
+        return repository.executeQuery(sql);
+    }
+
+    public ExecutionResult runFreeUpdate(String sql) throws SQLException {
+        return repository.executeUpdate(sql);
     }
 
     public boolean saveConnectionSettings(DatabaseConfig config) {
