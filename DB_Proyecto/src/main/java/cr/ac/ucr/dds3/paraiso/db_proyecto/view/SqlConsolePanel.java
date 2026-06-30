@@ -33,7 +33,7 @@ public class SqlConsolePanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 
         // Configurar editor SQL
-        sqlEditor.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+        sqlEditor.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
         sqlEditor.setLineWrap(true);
         sqlEditor.setWrapStyleWord(true);
 
@@ -78,7 +78,7 @@ public class SqlConsolePanel extends JPanel {
         tableModel.setRowCount(0);
         tableModel.setColumnCount(0);
         statusLabel.setText("Listo");
-        statusLabel.setForeground(Color.BLACK);
+        statusLabel.setForeground(javax.swing.UIManager.getColor("Label.foreground"));
     }
 
     private void executeSql() {
@@ -86,7 +86,7 @@ public class SqlConsolePanel extends JPanel {
         
         String sql = sqlEditor.getText().trim();
         if (sql.isEmpty()) {
-            setStatus("Escriba una consulta SQL antes de ejecutar.", Color.RED);
+            setStatus("Escriba una consulta SQL antes de ejecutar.", new Color(255, 85, 85));
             return;
         }
 
@@ -106,17 +106,17 @@ public class SqlConsolePanel extends JPanel {
                     tableModel.addRow(row);
                 }
                 long duration = System.currentTimeMillis() - startTime;
-                setStatus("Filas retornadas: " + result.rows().size() + " (" + duration + " ms)", new Color(0, 100, 0)); // Dark green
+                setStatus("Filas retornadas: " + result.rows().size() + " (" + duration + " ms)", new Color(87, 186, 108));
             } else {
                 ExecutionResult result = controller.runFreeUpdate(sql);
                 tableModel.setRowCount(0);
                 tableModel.setColumnCount(0); // Limpiar tabla de resultados
                 long duration = System.currentTimeMillis() - startTime;
-                setStatus("Filas afectadas: " + result.affectedRows() + " (" + duration + " ms)", new Color(0, 100, 0)); // Dark green
+                setStatus("Filas afectadas: " + result.affectedRows() + " (" + duration + " ms)", new Color(87, 186, 108));
             }
         } catch (SQLException e) {
             long duration = System.currentTimeMillis() - startTime;
-            setStatus("Error (" + duration + " ms): " + SqlErrorTranslator.translate(e), Color.RED);
+            setStatus("Error (" + duration + " ms): " + SqlErrorTranslator.translate(e), new Color(255, 85, 85));
         }
     }
 

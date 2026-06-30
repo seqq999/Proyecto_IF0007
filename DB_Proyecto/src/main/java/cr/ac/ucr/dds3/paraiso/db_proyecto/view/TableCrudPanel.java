@@ -64,7 +64,7 @@ public class TableCrudPanel extends JPanel {
         tableSelector.addActionListener(event -> onTableChanged());
 
         JPanel buttonPanel = new JPanel();
-        JButton newButton = new JButton("Nuevo");
+        JButton newButton = new JButton("Limpiar");
         JButton insertButton = new JButton("Insertar");
         JButton updateButton = new JButton("Actualizar");
         JButton deleteButton = new JButton("Eliminar");

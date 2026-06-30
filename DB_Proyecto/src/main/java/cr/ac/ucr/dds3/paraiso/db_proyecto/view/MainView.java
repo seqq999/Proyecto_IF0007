@@ -29,7 +29,12 @@ public class MainView extends JFrame {
         tabs.addTab("Administración de tablas", tableCrudPanel);
         tabs.addTab("Consultas avanzadas", queryPanel);
         tabs.addTab("Consola SQL", sqlConsolePanel);
-        add(tabs, BorderLayout.CENTER);
+        
+        javax.swing.JPanel container = new javax.swing.JPanel(new BorderLayout());
+        container.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
+        container.add(tabs, BorderLayout.CENTER);
+        
+        add(container, BorderLayout.CENTER);
     }
 
     public void initialize(List<TableDefinition> tables, List<QueryDefinition> queries) {
