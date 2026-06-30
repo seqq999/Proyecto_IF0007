@@ -127,7 +127,7 @@ public final class TableCatalog {
                 col("Cedula_Cliente", "Cliente", ColumnType.STRING, false, false)
         ), List.of(
                 fk("Cedula_Cliente", "cliente", "Cedula", "CONCAT(Nombre, ' ', Apellidos)",
-                        ReferentialAction.RESTRICT, ReferentialAction.CASCADE)
+                        ReferentialAction.CASCADE, ReferentialAction.CASCADE)
         )));
 
         register(new TableDefinition("factura", "Factura", List.of(
@@ -145,7 +145,7 @@ public final class TableCatalog {
                 col("Cedula_Cliente", "Cliente", ColumnType.STRING, false, false)
         ), List.of(
                 fk("Cedula_Cliente", "cliente", "Cedula", "CONCAT(Nombre, ' ', Apellidos)",
-                        ReferentialAction.RESTRICT, ReferentialAction.CASCADE)
+                        ReferentialAction.CASCADE, ReferentialAction.CASCADE)
         )));
 
         register(new TableDefinition("concepto_cobro", "Concepto de cobro", List.of(
@@ -238,7 +238,7 @@ public final class TableCatalog {
                 col("Saldo_Disponible", "Saldo disponible", ColumnType.INTEGER, false, false)
         ), List.of(
                 fk("Cedula_Cliente", "cliente", "Cedula", "CONCAT(Nombre, ' ', Apellidos)",
-                        ReferentialAction.RESTRICT, ReferentialAction.CASCADE)
+                        ReferentialAction.CASCADE, ReferentialAction.CASCADE)
         )));
 
         register(new TableDefinition("promo_incompatible", "Promos incompatibles", List.of(

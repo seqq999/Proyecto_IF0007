@@ -127,7 +127,7 @@ CREATE TABLE linea_movil (
   Tipo_SIM VARCHAR(10) NOT NULL CHECK (Tipo_SIM in ('Física','eSIM')),
   Cedula_Cliente VARCHAR(20) NOT NULL,
   PRIMARY KEY (Numero_Telefono),
-  CONSTRAINT linea_movil_ibfk_1 FOREIGN KEY (Cedula_Cliente) REFERENCES cliente (Cedula) ON UPDATE CASCADE
+  CONSTRAINT linea_movil_ibfk_1 FOREIGN KEY (Cedula_Cliente) REFERENCES cliente (Cedula) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO linea_movil (Numero_Telefono, Tipo_Linea, Tecnologia, Fecha_Activacion, Estado_Linea, Tipo_SIM, Cedula_Cliente) VALUES
@@ -274,7 +274,7 @@ CREATE TABLE factura (
   Estado_Pago VARCHAR(20) NOT NULL CHECK (Estado_Pago in ('Cancelada','Pendiente','Vencida')),
   Cedula_Cliente VARCHAR(20) NOT NULL,
   PRIMARY KEY (Numero_Factura),
-  CONSTRAINT factura_ibfk_1 FOREIGN KEY (Cedula_Cliente) REFERENCES cliente (Cedula) ON UPDATE CASCADE
+  CONSTRAINT factura_ibfk_1 FOREIGN KEY (Cedula_Cliente) REFERENCES cliente (Cedula) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO factura (Numero_Factura, Fecha_Emision, Fecha_Vencimiento, Monto_Base, Impuestos, Descuentos_Aplicados, Puntos_Redimidos, Monto_Final, Fecha_Pago, Estado_Pago, Cedula_Cliente) VALUES
@@ -483,7 +483,7 @@ CREATE TABLE puntos_fidelizacion (
   Puntos_Redimidos_Monto DECIMAL(10,2) NOT NULL CHECK (Puntos_Redimidos_Monto >= 0),
   Saldo_Disponible INT NOT NULL CHECK (Saldo_Disponible >= 0),
   PRIMARY KEY (IdRegistro_Puntos),
-  CONSTRAINT puntos_fidelizacion_ibfk_1 FOREIGN KEY (Cedula_Cliente) REFERENCES cliente (Cedula) ON UPDATE CASCADE
+  CONSTRAINT puntos_fidelizacion_ibfk_1 FOREIGN KEY (Cedula_Cliente) REFERENCES cliente (Cedula) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO puntos_fidelizacion (IdRegistro_Puntos, Cedula_Cliente, Fecha_Transaccion, Puntos_Redimidos_Monto, Saldo_Disponible) VALUES

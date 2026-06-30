@@ -65,7 +65,7 @@ public final class QueryData {
                                 INNER JOIN tipo_promocion tp ON p.CodTipoPromocion = tp.CodTipoPromo
                                 LEFT JOIN promo_plan pp ON p.CodPromocion = pp.CodPromocion
                                 LEFT JOIN plan_tarifario pl ON pp.CodPlan = pl.CodPlan
-                                WHERE CURDATE() BETWEEN p.Fecha_Inicio AND p.Fecha_Finalizacion
+                                WHERE CONVERT(date, GETDATE()) BETWEEN p.Fecha_Inicio AND p.Fecha_Finalizacion
                                 ORDER BY p.Nombre, pl.Nombre
                                 """
                 ),
@@ -89,7 +89,7 @@ public final class QueryData {
                         "JOIN geográfico provincia-cantón-distrito con UCASE (operador no visto en clase).",
                         """
                                 SELECT cl.Cedula,
-                                       UCASE(CONCAT(cl.Nombre, ' ', cl.Apellidos)) AS ClienteMayusculas,
+                                       UPPER(CONCAT(cl.Nombre, ' ', cl.Apellidos)) AS ClienteMayusculas,
                                        p.NombreProvincia, ca.NombreCanton, d.NombreDistrito
                                 FROM cliente cl
                                 INNER JOIN distrito d ON cl.CodDistrito = d.CodDistrito
