@@ -12,17 +12,13 @@ public final class SqlErrorTranslator {
         String message = exception.getMessage() == null ? "" : exception.getMessage();
 
         return switch (errorCode) {
-            case 1048 -> "Un campo obligatorio no puede quedar vacío (NOT NULL). Revise los datos ingresados.";
-            case 1062 -> "Ya existe un registro con esa clave o valor único. " + extractDetail(message);
-            case 1451 -> "No se puede eliminar o modificar este registro porque otras tablas dependen de él (borrado restringido). "
+            case 515 -> "Un campo obligatorio no puede quedar vacío (NOT NULL). Revise los datos ingresados.";
+            case 2627, 2601 -> "Ya existe un registro con esa clave o valor único. " + extractDetail(message);
+            case 547 -> "El registro no cumple con una restricción de integridad (Llave Foránea o CHECK). "
                     + extractDetail(message);
-            case 1452 -> "La referencia seleccionada no existe en la tabla relacionada. Verifique las listas desplegables."
+            case 245, 8114 -> "El tipo de dato ingresado no es válido para uno de los campos. "
                     + extractDetail(message);
-            case 3819, 4025 -> "Los datos incumplen una restricción CHECK de la base de datos. "
-                    + extractDetail(message);
-            case 1264, 1366, 1292 -> "El tipo de dato ingresado no es válido para uno de los campos. "
-                    + extractDetail(message);
-            case 1146 -> "La tabla o vista no existe. Ejecute sql/database_extensions.sql si falta la vista o auditoría.";
+            case 208 -> "La tabla o vista no existe. Ejecute sql/sqlserver/database_extensions_sqlserver.sql si falta la vista o auditoría.";
             default -> "Error de base de datos (" + errorCode + "): " + message;
         };
     }
